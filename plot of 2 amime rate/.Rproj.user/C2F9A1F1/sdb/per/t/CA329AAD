@@ -1,0 +1,17 @@
+{
+    "contents" : "require(ggplot2)\ndata <- rbind(G,BFT)\nd1<- data[data$Ep==\"01&02話\",]\nd1$Ep <- \"01話\"\nd2 <- d1\nd2$Ep <- \"02話\"\ndata <- rbind(d1,d2 ,data[-1,])\nrequire(reshape2)\nmeltdata <- melt(data,id = c(\"Name\",\"Ep\"))\nnames(meltdata)<- c(\"Name\",\"Ep\",\"Age\",\"Rate\")\np <- ggplot(meltdata)\np+geom_point( aes(Ep,Rate, color=Age))+facet_grid(Name~.)\np+geom_point( aes(Ep,Rate, color=Age, size = Rate,alpha = 0.4))+geom_line( aes(Ep,Rate, group = Age,color=Age))+facet_grid(.~Name)\n\nm <-mean(as.matrix(data[,c(1:10)]))\nsum((data[,c(1:10)]-m)^2)/220\n",
+    "created" : 1420808330145.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3133490770",
+    "id" : "CA329AAD",
+    "lastKnownWriteTime" : 1421043379,
+    "path" : "E:/R/projects/NEW/plot.R",
+    "project_path" : "plot.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
